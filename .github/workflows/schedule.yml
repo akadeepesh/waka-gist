@@ -34,3 +34,12 @@ jobs:
 
       - name: Update-gist
         run: go run ./cmd/box/main.go 
+
+      - name: Commit workflow activity
+        run: |
+          git config --local user.email "<deepesh.kumar.ug21@nsut.ac.in>"
+          git config --local user.name "akadeepesh"
+          echo "Workflow updated: $(date)" > .workflow-activity
+          git add .workflow-activity
+          git commit -m "Workflow updated: $(date '+%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
+          git push
